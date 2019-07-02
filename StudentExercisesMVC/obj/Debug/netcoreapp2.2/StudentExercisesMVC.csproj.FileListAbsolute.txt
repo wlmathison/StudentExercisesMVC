@@ -31,3 +31,4 @@ C:\Users\Billy\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debu
 C:\Users\Billy\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Students\Index.g.cshtml.cs
 C:\Users\Billy\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Students\Details.g.cshtml.cs
 C:\Users\Billy\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Students\Edit.g.cshtml.cs
+C:\Users\Billy\workspace\csharp\StudentExercisesMVC\StudentExercisesMVC\obj\Debug\netcoreapp2.2\Razor\Views\Students\Delete.g.cshtml.cs
