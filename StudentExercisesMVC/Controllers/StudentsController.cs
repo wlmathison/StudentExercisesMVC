@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using StudentExercisesMVC.Models;
+using StudentExercisesMVC.Models.ViewModels;
 
 namespace StudentExercisesMVC.Controllers
 {
@@ -79,19 +80,36 @@ namespace StudentExercisesMVC.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
-            return View();
+            StudentCreateViewModel StudentCreateViewModel = new StudentCreateViewModel(_config.GetConnectionString("DefaultConnection"));
+            return View(StudentCreateViewModel);
         }
 
 
         // POST: Students/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(StudentCreateViewModel model)
         {
             try
             {
+                using (SqlConnection conn = Connection)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"INSERT INTO Student
+                                            ( FirstName, LastName, SlackHandle, CohortId )
+                                            VALUES
+                                            ( @firstName, @lastName, @slackHandle, @cohortId )";
+                        cmd.Parameters.Add(new SqlParameter("@firstName", model.Student.FirstName));
+                        cmd.Parameters.Add(new SqlParameter("@lastName", model.Student.LastName));
+                        cmd.Parameters.Add(new SqlParameter("@slackHandle", model.Student.SlackHandle));
+                        cmd.Parameters.Add(new SqlParameter("@cohortId", model.Student.CohortId));
+                        cmd.ExecuteNonQuery();
 
-                return RedirectToAction(nameof(Index));
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
             }
             catch
             {

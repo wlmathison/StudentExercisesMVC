@@ -1,8 +1,49 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model StudentExercisesMVC.Models.ViewModels.StudentInstructorViewModel
+
+@{
+    ViewData["Title"] = "Students & Instructors";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>@ViewData["Title"]</h2>
+
+<h4>Students</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> Student Name </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => student.FirstName)
+                    @Html.DisplayFor(modelItem => student.LastName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Instructors</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> Instructor Name </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var instructor in Model.Instructors)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => instructor.FirstName)
+                    @Html.DisplayFor(modelItem => instructor.LastName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
